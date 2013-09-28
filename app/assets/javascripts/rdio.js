@@ -1,8 +1,9 @@
 $(document).ready(function() {
-	$('.sign-in-btn').click(function() {
+	$('#sign-in-btn').click(function() {
 		R.authenticate()
 	})
-	$('.create-playlist-btn').click(function() {
+	$('#create-playlist-btn').on('click', function() {
+		console.log('here')
 		R.request({
 			method: "createPlaylist",
 			content: {
