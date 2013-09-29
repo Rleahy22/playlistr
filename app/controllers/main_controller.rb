@@ -39,6 +39,11 @@ class MainController < ApplicationController
   	# @playlist = Playlist.find_by_text_id(playlist_id)
   	@song = text[index + 1..text.length]
 
-  	render :test
+  	response = Twilio::TwiML::Response.new do |r|
+  		r.sms "PLaylist id = #{@playlist_id} Song = #{@song}"
+  	end
+
+  	content_type :xml
+  	response.text
   end
 end
