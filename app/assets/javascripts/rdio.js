@@ -20,10 +20,16 @@ $(document).ready(function() {
 		var songsToAdd = []
 		$.get("/allsongs", function(data) {
 			newPlaylist = data
+			console.log('newPlaylist', newPlaylist)
+			console.log('currentPlaylist', currentPlaylist)
 			if (!(newPlaylist.length == currentPlaylist.length)) {
+				console.log('pushing to songsToAdd')
 				songsToAdd.push(newPlaylist[newPlaylist.length - 1])
+				console.log(songsToAdd)
 			}
 			if (!(songsToAdd.length == 0)) {
+				console.log('searching for song')
+				console.log(songsToAdd[0])
 				var songQuery = JSON.stringify(songsToAdd[0])
 				R.ready(function(){
 					R.request({
@@ -44,6 +50,7 @@ $(document).ready(function() {
 				})
 			}
 			currentPlaylist = newPlaylist
+			console.log('setting currentPlaylist = newPlaylist')
 		})
 	}
 
