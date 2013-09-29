@@ -15,7 +15,7 @@
 		R.request({
 			method: "search",
 			content: {
-				query: <%= @song %>,
+				query: <%= @song.to_json %>,
 				types: "track"
 			},
 			success: function(response) {
