@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	var songsToAdd = []
 	var currentPlaylist = {}
 	$.get("/allsongs", function(data) {
 		currentPlaylist = $.map(data, function(value, index) {
@@ -20,13 +19,14 @@ $(document).ready(function() {
 
 	function updatePlaylist() {
 		var newPlaylist = []
+		var songsToAdd = []
 		$.get("/allsongs", function(data) {
 			newPlaylist = $.map(data, function(value, index) {
 				return [value]
 			})
-			songsToAdd = newPlaylist.filter(function(i) {
-											return !(currentPlaylist.indexOf(i) > -1)
-										})
+			if (!(newPlaylist.length == currentPlaylist.length) {
+				songsToAdd << newPlaylist[newPlaylist.length - 1]
+			}
 			console.log(songsToAdd)
 			if (!(songsToAdd.length == 0)) {
 				var songQuery = JSON.stringify(songsToAdd[0])
