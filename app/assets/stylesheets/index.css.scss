@@ -40,3 +40,18 @@ body {
   margin: 0 auto;
   color: gray;
 }
+
+#playlist-name {
+  border: none;
+  font-size: 2em;
+  input {
+    width: 50%;
+    color: gray;
+  }
+}
+
+#rdio-player {
+  width: 92%;
+  height: 250px;
+  margin: 4%;
+}
