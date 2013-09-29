@@ -72,7 +72,9 @@ class MainController < ApplicationController
   end
 
   def session
-    session[:playlist_key] = params[:key]
+    if params[:key]
+      session[:playlist_key] = params[:key]
+    end
   end
 
   def key
