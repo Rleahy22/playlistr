@@ -4,11 +4,14 @@ $(document).ready(function() {
 		currentPlaylist = data
 	})
 	var addSong = function(key) {
+		$.get('/key'), function(data) {
+			playKey = data
+		}
 		R.ready(function() {
 			R.request({
 				method: "addToPlaylist",
 				content: {
-					playlist: "p6505813",
+					playlist: playKey,
 					tracks: key
 				},
 			})
@@ -94,12 +97,14 @@ function createPlaylist(name) {
 		content: {
 			name: name,
 			description: "A test version of our app",
-			tracks: "t32961632, t32961633"
+			tracks: "t31960987"
 		},
 		success: function(response) {
 			console.log(response.result)
 			console.log(response.result['embedUrl'])
 			var playerUrl = response.result['embedUrl']
+			var playerKey = response.result['key']
+			$.post("/newsong", {key: playerKey})
 			$('.container').after('<embed src="' + playerUrl + '" id="rdio-player">')
 		},
 		error: function(response) {
