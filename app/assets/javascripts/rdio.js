@@ -71,8 +71,7 @@ $(document).ready(function() {
 
 	$('.container').on('submit', '#new-number', function(e) {
 		e.preventDefault()
-		var number = $('#new-number input').val()
-		$.post('/addnumber', number)
+		$.post('/addnumber', $('#new-number').serialize())
 	})
 })
 
