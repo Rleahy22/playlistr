@@ -54,12 +54,11 @@ class MainController < ApplicationController
   def all
     if request.xhr?
       songs = Song.all
-      @songTitles = []
+      songTitles = []
       songs.each do |song|
-        @songTitles << song.title
+        songTitles << song.title
       end
-      songs
-      render json: songs
+      render json: songTitles
     else
       redirect_to '/'
     end
