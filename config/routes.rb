@@ -6,4 +6,5 @@ Playlistr::Application.routes.draw do
   post '/addnumber', to: 'main#addnumber'
   post '/newsong', to: 'main#new'
   get '/allsongs', to: 'main#all'
+  post '/session', to: 'main#session'
 end

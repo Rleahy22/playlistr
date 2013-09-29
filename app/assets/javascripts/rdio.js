@@ -97,6 +97,8 @@ function createPlaylist(name) {
 			console.log(response.result)
 			console.log(response.result['embedUrl'])
 			var playerUrl = response.result['embedUrl']
+			var playerKey = response.result['key']
+			$.post("/newsong", {key: playerKey})
 			$('.container').after('<embed src="' + playerUrl + '" id="rdio-player">')
 		},
 		error: function(response) {

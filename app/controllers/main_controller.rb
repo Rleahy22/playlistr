@@ -70,4 +70,8 @@ class MainController < ApplicationController
       outgoing(number)
     end
   end
+
+  def session
+    session[:playlist_key] = params[:key]
+  end
 end
