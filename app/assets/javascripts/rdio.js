@@ -20,7 +20,6 @@ $(document).ready(function() {
 		var songsToAdd = []
 		$.get("/allsongs", function(data) {
 			newPlaylist = data
-			setTimeout(function(){console.log('waiting'), 500})
 			if (!(newPlaylist.length == currentPlaylist.length)) {
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
 			}
@@ -44,10 +43,10 @@ $(document).ready(function() {
 						}
 					})
 				})
+				console.log("current = " + currentPlaylist)
+				console.log("new = " + newPlaylist)
+				currentPlaylist = newPlaylist
 			}
-			console.log("current = " + currentPlaylist)
-			console.log("new = " + newPlaylist)
-			currentPlaylist = newPlaylist
 		})
 	}
 
