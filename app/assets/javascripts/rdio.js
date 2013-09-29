@@ -91,7 +91,7 @@ function createPlaylist(name) {
 		content: {
 			name: name,
 			description: "A test version of our app",
-			tracks: "t32961632, t32961633"
+			tracks: "t31960987"
 		},
 		success: function(response) {
 			console.log(response.result)
