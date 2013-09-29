@@ -35,8 +35,10 @@ class MainController < ApplicationController
   def incoming
   	text = params[:Body]
   	index = text.index(' ') - 1
-  	playlist_id = text[0..index]
+  	@playlist_id = text[0..index]
   	# @playlist = Playlist.find_by_text_id(playlist_id)
   	@song = text[index + 1..text.length]
+
+  	render :test
   end
 end
