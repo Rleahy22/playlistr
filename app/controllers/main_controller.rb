@@ -5,7 +5,7 @@ class MainController < ApplicationController
 	TWILIO_NUMBER = ENV['TWILIO_NUMBER']
 
   def index
-  	@songs = Song.All
+  	@songs = Song.all
 
     render :index
   end
