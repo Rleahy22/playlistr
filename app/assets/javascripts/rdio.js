@@ -22,7 +22,8 @@ $(document).ready(function() {
 			newPlaylist = data
 			console.log('newPlaylist', newPlaylist)
 			console.log('currentPlaylist', currentPlaylist)
-			if (newPlaylist.length !== currentPlaylist.length && newPlaylist.length < 3) {
+			if (!(newPlaylist.length == currentPlaylist.length) && newPlaylist.length < 3) {
+				console.log('pushing to songsToAdd')
 				songsToAdd.push(newPlaylist[newPlaylist.length - 1])
 				console.log(songsToAdd)
 			}
