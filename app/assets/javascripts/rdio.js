@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	var currentPlaylist = {}
-	response = $.get("/allsongs", function(data) {
+	var currentPlaylist = []
+	$.get("/allsongs", function(data) {
 		currentPlaylist = data
 	})
 	var addSong = function(key) {
@@ -18,7 +18,7 @@ $(document).ready(function() {
 	function updatePlaylist() {
 		var newPlaylist = []
 		var songsToAdd = []
-		$.get("/allsongs", function(data) {
+		$.get({url: "/allsongs"}).done(function(data) {
 			newPlaylist = data
 			if (!(newPlaylist.length == currentPlaylist.length)) {
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
@@ -43,12 +43,12 @@ $(document).ready(function() {
 						}
 					})
 				})
-				console.log("current = " + currentPlaylist)
-				console.log("new = " + newPlaylist)
-				currentPlaylist = newPlaylist
 			}
+			console.log("current = " + currentPlaylist)
+			console.log("new = " + newPlaylist)
+			currentPlaylist = newPlaylist
 		})
-	}
+	})
 
 	var i = setInterval(function() { updatePlaylist() }, 5000)
 
