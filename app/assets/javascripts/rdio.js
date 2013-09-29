@@ -25,6 +25,7 @@ $(document).ready(function() {
 			if (!(newPlaylist.length == currentPlaylist.length)) {
 				console.log('pushing to songsToAdd')
 				songsToAdd.push(newPlaylist[newPlaylist.length - 1])
+				currentPlaylist = newPlaylist
 				console.log(songsToAdd)
 			}
 			if (!(songsToAdd.length == 0)) {
@@ -49,8 +50,9 @@ $(document).ready(function() {
 					})
 				})
 			}
-			currentPlaylist = newPlaylist
 			console.log('setting currentPlaylist = newPlaylist')
+			console.log('newPlaylist', newPlaylist)
+			console.log('currentPlaylist', currentPlaylist)
 		})
 	}
 
