@@ -4,4 +4,6 @@ Playlistr::Application.routes.draw do
   get '/outgoing', to: 'main#outgoing'
   post '/incoming', to: 'main#incoming'
   post '/addnumber', to: 'main#addnumber'
+  post '/newsong', to: 'main#new'
+  get '/allsongs', to: 'main#all'
 end
