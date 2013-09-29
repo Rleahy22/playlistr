@@ -21,7 +21,7 @@ $(document).ready(function() {
 		$.get("/allsongs", function(data) {
 			newPlaylist = data
 			if (!(newPlaylist.length == currentPlaylist.length)) {
-				console.log("it worked")
+				console.log(newPlaylist)
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
 			}
 			console.log(songsToAdd)
