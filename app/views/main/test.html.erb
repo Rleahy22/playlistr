@@ -1,3 +1,5 @@
+
+<h1 class="new_song"><%= @song %></h1>
 <script type="text/javascript">
 	var addSong = function(key) {
 		R.ready(function() {
@@ -11,11 +13,13 @@
 		})
 	}
 
+	var song = $('.new_song').html()
+
 	R.ready(function() {
 		R.request({
 			method: "search",
 			content: {
-				query: <%= @song.to_json %>,
+				query: song,
 				types: "track"
 			},
 			success: function(response) {
