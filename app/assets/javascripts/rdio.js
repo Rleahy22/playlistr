@@ -84,6 +84,7 @@ $(document).ready(function() {
 	$('.container').on('submit', '#new-number', function(e) {
 		e.preventDefault()
 		$.post('/addnumber', $('#new-number').serialize())
+		$('#new-number input[name="number"]').val('')
 	})
 })
 
