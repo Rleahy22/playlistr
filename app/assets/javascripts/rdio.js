@@ -4,7 +4,7 @@ $(document).ready(function() {
 		currentPlaylist = data
 	})
 	var addSong = function(key) {
-		$.get('/key'), function(data) {
+		$.get('/key', function(data) {
 			playKey = data
 		}
 		R.ready(function() {
