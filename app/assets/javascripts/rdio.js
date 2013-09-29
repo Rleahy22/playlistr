@@ -91,13 +91,12 @@ function createPlaylist(name) {
 		content: {
 			name: name,
 			description: "A test version of our app",
-			tracks: "t31960987"
+			tracks: "t32961632"
 		},
 		success: function(response) {
 			console.log(response.result)
 			console.log(response.result['embedUrl'])
 			var playerUrl = response.result['embedUrl']
-			var playerKey = response.result['key']
 			$('.container').after('<embed src="' + playerUrl + '" id="rdio-player">')
 		},
 		error: function(response) {

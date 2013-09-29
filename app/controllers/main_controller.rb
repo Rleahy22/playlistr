@@ -71,12 +71,6 @@ class MainController < ApplicationController
     end
   end
 
-  def session
-    if params[:key]
-      session[:playlist_key] = params[:key]
-    end
-  end
-
   def key
     render json: session[:playlist_key]
   end
