@@ -24,7 +24,7 @@ $(document).ready(function() {
 			newPlaylist = $.map(data, function(value, index) {
 				return [value]
 			})
-			if (!(newPlaylist.length == currentPlaylist.length) {
+			if (!(newPlaylist.length == currentPlaylist.length)) {
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
 			}
 			console.log(songsToAdd)
