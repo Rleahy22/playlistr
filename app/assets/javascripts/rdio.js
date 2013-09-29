@@ -1,9 +1,7 @@
 $(document).ready(function() {
 	var currentPlaylist = {}
-	$.get("/allsongs", function(data) {
-		currentPlaylist = $.map(data, function(value, index) {
-			return [value]
-		})
+	response = $.get("/allsongs", function(data) {
+		currentPlaylist = data
 	})
 	var addSong = function(key) {
 		R.ready(function() {
@@ -21,9 +19,7 @@ $(document).ready(function() {
 		var newPlaylist = []
 		var songsToAdd = []
 		$.get("/allsongs", function(data) {
-			newPlaylist = $.map(data, function(value, index) {
-				return [value]
-			})
+			newPlaylist = data
 			if (!(newPlaylist.length == currentPlaylist.length)) {
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
 			}
