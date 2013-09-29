@@ -15,8 +15,3 @@
   </fieldset>
   <input class="main-btn" type="submit">
 </form>
-<% @songList = [] %>
-<% @songs.each do |song| %>
-  <% @songList << song.title %>
-<% end %>
-<div id="songsdiv" data-songs="<%= @songList %>"></div>
