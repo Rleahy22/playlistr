@@ -34,16 +34,16 @@ class MainController < ApplicationController
 
   def incoming
   	text = params[:Body]
+  	from = params[:From]
   	index = text.index(' ') - 1
   	@playlist_id = text[0..index]
   	# @playlist = Playlist.find_by_text_id(playlist_id)
   	@song = text[index + 1..text.length]
 
-  	response = Twilio::TwiML::Response.new do |r|
-  		r.sms "PLaylist id = #{@playlist_id} Song = #{@song}"
-  	end
-
-  	content_type :xml
-  	response.text
+  	client.account.sms.messages.create(
+  		:from => TWILIO_NUMBER,
+  		:to => from,
+  		:body => "Playlist = #{@playlist_id} Song = #{@song}"
+  		)
   end
 end
