@@ -4,11 +4,14 @@ $(document).ready(function() {
 		currentPlaylist = data
 	})
 	var addSong = function(key) {
+		$.get('/key'), function(data) {
+			playKey = data
+		}
 		R.ready(function() {
 			R.request({
 				method: "addToPlaylist",
 				content: {
-					playlist: "p6505813",
+					playlist: playKey,
 					tracks: key
 				},
 			})
