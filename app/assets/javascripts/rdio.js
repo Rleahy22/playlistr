@@ -1,9 +1,8 @@
 $(document).ready(function() {
 	var currentPlaylist = {}
 	response = $.get("/allsongs", function(data) {
-		return data
+		currentPlaylist = data
 	})
-	var currentPlaylist = response.responseJSON
 	var addSong = function(key) {
 		R.ready(function() {
 			R.request({
@@ -20,10 +19,7 @@ $(document).ready(function() {
 		var newPlaylist = []
 		var songsToAdd = []
 		$.get("/allsongs", function(data) {
-			newPlaylist = $.map(data.responseJSON, function(value, index) {
-				return [value]
-				console.log("value = " + value)
-			})
+			newPlaylist = data
 			if (!(newPlaylist.length == currentPlaylist.length)) {
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
 			}
