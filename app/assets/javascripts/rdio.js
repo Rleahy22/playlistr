@@ -44,6 +44,8 @@ $(document).ready(function() {
 					})
 				})
 			}
+			console.log("current = " + currentPlaylist)
+			console.log("new = " + newPlaylist)
 			currentPlaylist = newPlaylist
 		})
 	}
