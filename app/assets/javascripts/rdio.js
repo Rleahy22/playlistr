@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var addSong = function(key) {
 		$.get('/key', function(data) {
 			playKey = data
-		}
+		})
 		R.ready(function() {
 			R.request({
 				method: "addToPlaylist",
