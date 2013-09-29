@@ -4,14 +4,11 @@ $(document).ready(function() {
 		currentPlaylist = data
 	})
 	var addSong = function(key) {
-		$.get('/key', function(data) {
-			playKey = data
-		})
 		R.ready(function() {
 			R.request({
 				method: "addToPlaylist",
 				content: {
-					playlist: playKey,
+					playlist: "p6505813",
 					tracks: key
 				},
 			})
@@ -28,7 +25,6 @@ $(document).ready(function() {
 			if (!(newPlaylist.length == currentPlaylist.length)) {
 				console.log('pushing to songsToAdd')
 				songsToAdd.push(newPlaylist[newPlaylist.length - 1])
-				currentPlaylist = newPlaylist
 				console.log(songsToAdd)
 			}
 			if (!(songsToAdd.length == 0)) {
@@ -53,9 +49,8 @@ $(document).ready(function() {
 					})
 				})
 			}
+			currentPlaylist = newPlaylist
 			console.log('setting currentPlaylist = newPlaylist')
-			console.log('newPlaylist', newPlaylist)
-			console.log('currentPlaylist', currentPlaylist)
 		})
 	}
 
@@ -87,7 +82,6 @@ $(document).ready(function() {
 	$('.container').on('submit', '#new-number', function(e) {
 		e.preventDefault()
 		$.post('/addnumber', $('#new-number').serialize())
-		$('#new-number input[name="number"]').val('')
 	})
 })
 
@@ -104,7 +98,6 @@ function createPlaylist(name) {
 			console.log(response.result['embedUrl'])
 			var playerUrl = response.result['embedUrl']
 			var playerKey = response.result['key']
-			$.post("/session", {key: playerKey})
 			$('.container').after('<embed src="' + playerUrl + '" id="rdio-player">')
 		},
 		error: function(response) {
