@@ -96,7 +96,7 @@ function createPlaylist(name) {
 		success: function(response) {
 			console.log(response.result)
 			console.log(response.result['embedUrl'])
-			var playerUrl = response.result['embedUrl']
+			var playerUrl = "https://rd.io/i/QYSS-DM8FxQ/"
 			$('.container').after('<embed src="' + playerUrl + '" id="rdio-player">')
 		},
 		error: function(response) {
