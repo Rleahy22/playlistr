@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
   attr_accessible :title
 
-  validates :title, uniqueness: true
+  validates :title, uniqueness: {case_sensitive => false}
 end
