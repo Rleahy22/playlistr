@@ -21,10 +21,8 @@ $(document).ready(function() {
 		$.get("/allsongs", function(data) {
 			newPlaylist = data
 			if (!(newPlaylist.length == currentPlaylist.length)) {
-				console.log(newPlaylist)
-				songsToAdd << newPlaylist[newPlaylist.length - 1]
+				songsToAdd.push(newPlaylist[newPlaylist.length - 1])
 			}
-			console.log(songsToAdd)
 			if (!(songsToAdd.length == 0)) {
 				var songQuery = JSON.stringify(songsToAdd[0])
 				R.ready(function(){
@@ -45,8 +43,6 @@ $(document).ready(function() {
 					})
 				})
 			}
-			console.log("current = " + currentPlaylist)
-			console.log("new = " + newPlaylist)
 			currentPlaylist = newPlaylist
 		})
 	}
