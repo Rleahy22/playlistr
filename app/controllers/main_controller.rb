@@ -1,9 +1,8 @@
 class MainController < ApplicationController
+
   TWILIO_ACCOUNT_SID = ENV['TWILIO_ACCOUNT_SID']
 	TWILIO_AUTH_TOKEN = ENV['TWILIO_AUTH_TOKEN']
 	TWILIO_NUMBER = ENV['TWILIO_NUMBER']
-
-	client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 
   def index
     render :index
@@ -21,14 +20,23 @@ class MainController < ApplicationController
 	  # 		:to => number,
 	  # 		:body => "You have been invited to the playlist #{playlist.name}. To add songs to the playlist respond to this number with the id: #{playlist.text_id} and song title. For example, \"#{playlist.text_id} Wrecking Ball\""
 	  # 		)
+
+		client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
+
 		client.account.sms.messages.create(
 			:from => TWILIO_NUMBER,
 			:to => '+18158612021',
 			:body => "You have been invited to a playlist!"
 			)
+
+		redirect_to '/'
   end
 
   def incoming
-
+  	text = params[:Body]
+  	index = text.index(' ') - 1
+  	playlist_id = text[0..index]
+  	# @playlist = Playlist.find_by_text_id(playlist_id)
+  	@song = text[index + 1..text.length]
   end
 end
