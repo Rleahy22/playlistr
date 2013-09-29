@@ -1,13 +1,17 @@
 $(document).ready(function() {
 	var songsToAdd = []
-	var currentPlaylist = ["I knew you were trouble", "mercy", "Party Up"]
-
+	var currentPlaylist = {}
+	$.get("/allsongs", function(data) {
+		currentPlaylist = $.map(data, function(value, index) {
+			return [value]
+		})
+	})
 	var addSong = function(key) {
 		R.ready(function() {
 			R.request({
 				method: "addToPlaylist",
 				content: {
-					playlist: "p6500654",
+					playlist: "p6505813",
 					tracks: key
 				},
 			})
@@ -15,36 +19,40 @@ $(document).ready(function() {
 	}
 
 	function updatePlaylist() {
-		test = ["I knew you were trouble", "mercy", "Party Up",
-									"Country Grammar", "Homecoming", "Roar"]
-		songsToAdd = test.filter(function(i) {
-										return !(currentPlaylist.indexOf(i) > -1)
-									})
-		console.log(songsToAdd)
-		for (var i = 0; i < songsToAdd.length; i++) {
-			console.log(i + " " + songsToAdd[i])
-			var songQuery = JSON.stringify(songsToAdd[i])
-			R.ready(function(){
-				R.request({
-					method: "search",
-					content: {
-						query: songQuery,
-						types: "track"
-					},
-					success: function(response) {
-						var trackKey = response.result.results[0]["key"]
-						addSong(trackKey)
-					},
-					error: function(response) {
-						console.log("error " + response.message)
-					}
-				})
+		var newPlaylist = []
+		$.get("/allsongs", function(data) {
+			newPlaylist = $.map(data, function(value, index) {
+				return [value]
 			})
-		}
-		// songsToAdd = []
+			songsToAdd = newPlaylist.filter(function(i) {
+											return !(currentPlaylist.indexOf(i) > -1)
+										})
+			console.log(songsToAdd)
+			if (!(songsToAdd.length == 0)) {
+				var songQuery = JSON.stringify(songsToAdd[0])
+				R.ready(function(){
+					R.request({
+						method: "search",
+						content: {
+							query: songQuery,
+							types: "track"
+						},
+						success: function(response) {
+							var song = response.result.results[0]
+							addSong(song["key"])
+							$.post("/newsong", {title: song["name"]})
+						},
+						error: function(response) {
+							console.log("error " + response.message)
+						}
+					})
+				})
+			}
+			currentPlaylist = newPlaylist
+		})
 	}
 
-	var i = setInterval(function() { updatePlaylist() }, 500)
+	var i = setInterval(function() { updatePlaylist() }, 5000)
 
 	$('#create-playlist-btn').hide()
 	$('#new-playlist').hide()
@@ -84,6 +92,7 @@ function createPlaylist(name) {
 			tracks: "t32961632, t32961633"
 		},
 		success: function(response) {
+			console.log(response.result)
 			console.log(response.result['embedUrl'])
 			var playerUrl = response.result['embedUrl']
 			$('.container').after('<embed src="' + playerUrl + '" id="rdio-player">')

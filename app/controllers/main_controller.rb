@@ -45,6 +45,24 @@ class MainController < ApplicationController
   	@song = Song.create(title: song)
   end
 
+  def new
+    Song.create(title: params[:title])
+  end
+
+  def all
+    if request.xhr?
+      songs = Song.all
+      @songTitles = []
+      songs.each do |song|
+        @songTitles << song.title
+      end
+      songs
+      render json: songs
+    else
+      redirect_to '/'
+    end
+  end
+
   def addnumber
     new_number = params[:number]
     outgoing(new_number)
