@@ -46,7 +46,9 @@ class MainController < ApplicationController
   end
 
   def addnumber
-    new_number = params[:number]
-    outgoing(new_number)
+    new_numbers = params[:number].split(',').map(&:strip)
+    new_numbers.each do |number|
+      outgoing(number)
+    end
   end
 end
