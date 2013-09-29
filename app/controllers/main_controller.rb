@@ -5,6 +5,8 @@ class MainController < ApplicationController
 	TWILIO_NUMBER = ENV['TWILIO_NUMBER']
 
   def index
+  	@songs = Song.All
+
     render :index
   end
 
@@ -36,10 +38,9 @@ class MainController < ApplicationController
   	text = params[:Body]
   	from = params[:From]
   	index = text.index(' ') - 1
-  	@playlist_id = text[0..index]
+  	playlist_id = text[0..index]
   	# @playlist = Playlist.find_by_text_id(playlist_id)
-  	@song = text[index + 1..text.length]
-
-  	render :test
+  	song = text[index + 1..text.length]
+  	@song = Song.create(title: song)
   end
 end
