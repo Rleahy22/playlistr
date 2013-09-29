@@ -14,7 +14,7 @@ class MainController < ApplicationController
     render :helper, layout: false
   end
 
-  def outgoing
+  def outgoing(number)
   	# playlist = Playlist.find(params[:playlist_id])
   	# params[:friends_numbers].each do |number|
 	  # 	client.account.sms.messages.create(
@@ -27,7 +27,8 @@ class MainController < ApplicationController
 
 		client.account.sms.messages.create(
 			:from => TWILIO_NUMBER,
-			:to => '+18158612021',
+      # :to => '+18158612021',
+			:to => number,
 			:body => "You have been invited to a playlist!"
 			)
 
@@ -42,5 +43,10 @@ class MainController < ApplicationController
   	# @playlist = Playlist.find_by_text_id(playlist_id)
   	song = text[index + 1..text.length]
   	@song = Song.create(title: song)
+  end
+
+  def addnumber
+    new_number = params[:number]
+    outgoing(new_number)
   end
 end

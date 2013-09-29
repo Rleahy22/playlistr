@@ -1,11 +1,17 @@
 <h1 class="heading">DJ SMS</h1>
 <button class="main-btn" id="sign-in-btn">Sign in with Rdio</button>
-<div data-songs="<%= @songs %>"></h1>
 <button class="main-btn" id="create-playlist-btn">New Playlist</button>
-<form action="#" id="playlist-form">
-  <fieldset id="playlist-name">
+<form action="#" id="new-playlist">
+  <fieldset class="playlist-detail" id="playlist-name">
     <label for="name">Playlist Name: </label>
     <input type="text" name="name">
+  </fieldset>
+  <input class="main-btn" type="submit">
+</form>
+<form action="#" id="new-number">
+  <fieldset class="playlist-detail" id="phone-number">
+    <label for="number">Invite a friend: </label>
+    <input type="text" name="number">
   </fieldset>
   <input class="main-btn" type="submit">
 </form>
