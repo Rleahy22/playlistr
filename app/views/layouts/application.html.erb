@@ -3,7 +3,7 @@
 <head>
   <title>DJ SMS</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <script src="https://www.rdio.com/api/api.js?client_id=<%= ENV['DJSMS_ID'] %>"></script>
+  <script src="//www.rdio.com/api/api.js?client_id=<%= ENV['DJSMS_ID'] %>"></script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,5 +11,6 @@
   <div class="container">
     <%= yield %>
   </div>
+  <footer class="made-in"><small>Made at Hella Hack Oakland, Oakland, CA, 2013</small></footer>
 </body>
 </html>

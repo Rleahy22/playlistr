@@ -1,4 +1,42 @@
+$light-blue: hsla(210, 50%, 50%, 0.6);
+
+body {
+  background: url('oakland_night.jpg');
+  color: white;
+}
+
 .container {
   width: 600px;
+  background: hsla(0, 0, 50%, 0.2);
   margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
+  font-size: 9.5em;
+  margin: 0.4em 0;
+}
+
+.container .main-btn {
+  width: 60%;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  font-size: 2.4em;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  color: gray;
+  &:hover {
+    color: $light-blue;
+  }
+}
+
+.made-in {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  margin: 0 auto;
+  color: gray;
 }
