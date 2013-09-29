@@ -46,45 +46,32 @@ $(document).ready(function() {
 
 	var i = setInterval(function() { updatePlaylist() }, 500)
 
-	$('#sign-in-btn').click(function() {
 	$('#create-playlist-btn').hide()
-	$('#playlist-form').hide()
+	$('#new-playlist').hide()
+	$('#new-number').hide()
 	$('.container').on('click', '#sign-in-btn', function() {
 		R.authenticate()
 		$('#sign-in-btn').hide()
 		$('#create-playlist-btn').show()
 	})
 
-	$('#create-playlist-btn').on('click', function() {
-		R.ready(function() {
-			R.request({
-				method: "createPlaylist",
-				content: {
-					name: "Practice SMSPlaylist",
-					description: "A test version of our app",
-					tracks: "t32961632, t32961633"
-				},
-				success: function(response) {
-					console.log(response.result)
-					console.log(response.result['embedUrl'])
-					var playerUrl = response.result['embedUrl']
-					$('.container').append('<embed src="' + playerUrl + '">')
-				},
-				error: function(response) {
-					console.log("error " + response.message)
-				}
-			})
-		});
 	$('.container').on('click', '#create-playlist-btn', function() {
 		$('#create-playlist-btn').hide()
-		$('#playlist-form').show()
+		$('#new-playlist').show()
 	})
-	$('.container').on('submit', '#playlist-form', function(e) {
+
+	$('.container').on('submit', '#new-playlist', function(e) {
 		e.preventDefault()
 		e.stopPropagation()
-		var name = $('#playlist-form input').val()
+		var name = $('#new-playlist input').val()
 		R.ready(createPlaylist(name))
-		$('#playlist-form').hide()
+		$('#new-playlist').hide()
+		$('#new-number').show()
+	})
+
+	$('.container').on('submit', '#new-number', function(e) {
+		e.preventDefault()
+		$.post('/addnumber', $('#new-number').serialize())
 	})
 })
 
