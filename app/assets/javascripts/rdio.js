@@ -18,9 +18,10 @@ $(document).ready(function() {
 	function updatePlaylist() {
 		var newPlaylist = []
 		var songsToAdd = []
-		$.get({url: "/allsongs"}).done(function(data) {
+		$.get("/allsongs", function(data) {
 			newPlaylist = data
 			if (!(newPlaylist.length == currentPlaylist.length)) {
+				console.log("it worked")
 				songsToAdd << newPlaylist[newPlaylist.length - 1]
 			}
 			console.log(songsToAdd)
@@ -48,7 +49,7 @@ $(document).ready(function() {
 			console.log("new = " + newPlaylist)
 			currentPlaylist = newPlaylist
 		})
-	})
+	}
 
 	var i = setInterval(function() { updatePlaylist() }, 5000)
 
