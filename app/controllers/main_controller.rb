@@ -43,6 +43,8 @@ class MainController < ApplicationController
   	# @playlist = Playlist.find_by_text_id(playlist_id)
   	song = text[index + 1..text.length]
   	@song = Song.create(title: song)
+
+    render nothing: true
   end
 
   def new
