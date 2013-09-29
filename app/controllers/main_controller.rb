@@ -40,12 +40,6 @@ class MainController < ApplicationController
   	# @playlist = Playlist.find_by_text_id(playlist_id)
   	@song = text[index + 1..text.length]
 
-  	client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
-
-  	client.account.sms.messages.create(
-  		:from => TWILIO_NUMBER,
-  		:to => from,
-  		:body => "Playlist = #{@playlist_id} Song = #{@song}"
-  		)
+  	render :test
   end
 end
