@@ -9,10 +9,12 @@ $(document).ready(function() {
 				content: {
 					name: "Practice SMSPlaylist",
 					description: "A test version of our app",
-					tracks: "t32961632"
+					tracks: "t32961632, t32961633"
 				},
 				success: function(response) {
-					var top = response.result[0]
+					console.log(response.result['embedUrl'])
+					var playerUrl = response.result['embedUrl']
+					$('.container').append('<embed src="' + playerUrl + '">')
 				},
 				error: function(response) {
 					console.log("error " + response.message)
